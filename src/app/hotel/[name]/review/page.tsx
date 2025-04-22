@@ -10,7 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-export default function ReviewPage({ params }: { params: { name: string } }) {
+export default function ReviewPage({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}) {
   const router = useRouter();
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -18,10 +22,11 @@ export default function ReviewPage({ params }: { params: { name: string } }) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const { name } = await params;
 
     // Here you would typically send this to your API
     const reviewData = {
-      hotelId: params.name,
+      hotelId: name,
       userName: formData.get("name"),
       rating: rating,
       comment: formData.get("comment"),
@@ -30,7 +35,7 @@ export default function ReviewPage({ params }: { params: { name: string } }) {
     };
 
     console.log("Review submitted:", reviewData);
-    router.push(`/hotel/${params.name}`);
+    router.push(`/hotel/${name}`);
   };
 
   return (
@@ -41,7 +46,7 @@ export default function ReviewPage({ params }: { params: { name: string } }) {
       className="container mx-auto px-4 py-12 max-w-2xl"
     >
       <Link
-        href={`/hotel/${params.name}`}
+        href={`/hotel/${name}`}
         className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-6"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />

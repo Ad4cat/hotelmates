@@ -1,9 +1,8 @@
 import { Header } from "@/components/Header";
 import React from "react";
 
-type Params = Promise<{ [key: string]: string }>;
 type Props = {
-  params: Params;
+  params: Promise<{ name: string }>;
 };
 
 export default async function HotelPage({ params }: Props) {

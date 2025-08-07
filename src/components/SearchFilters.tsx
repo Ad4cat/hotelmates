@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Slider } from "./ui/slider";
+import { motion } from "framer-motion";
 
 interface FilterOptions {
   search?: string;
@@ -35,7 +36,12 @@ export default function SearchFilters({ onFilterChange }: SearchFiltersProps) {
     onFilterChange({ ratingRange: value });
   };
   return (
-    <div className="space-y-6 p-6 bg-card rounded-xl border border-accent w-full">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ type: "spring", delay: 0.5, stiffness: 50 }}
+      className="space-y-6 p-6 bg-card rounded-xl border border-accent w-full"
+    >
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-muted-foreground mb-3">
           <Search className="w-4 h-4" />
@@ -117,6 +123,6 @@ export default function SearchFilters({ onFilterChange }: SearchFiltersProps) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

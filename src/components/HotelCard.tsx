@@ -1,6 +1,5 @@
 "use client";
 
-import { Hotel } from "@/app/types/schema";
 import Link from "next/link";
 import React from "react";
 import { Card, CardContent, CardHeader } from "./ui/card";
@@ -8,6 +7,7 @@ import { AspectRatio } from "./ui/aspect-ratio";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { Hotel } from "./HotelsClient";
 
 interface HotelCardProps {
   hotel: Hotel;
@@ -20,7 +20,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
         <motion.div
           whileHover={{ scale: 1.02, y: -5 }}
           whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="p-0"
         >
           <Card className="overflow-hidden border border-accent hover:border-primary/50 transition-colors p-0">
@@ -28,7 +28,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
               <AspectRatio ratio={16 / 9}>
                 <div className="relative w-full h-full">
                   <Image
-                    src={hotel.images[0] ?? "/no-image.png"}
+                    src={hotel.img_url ?? "/no_image.png"}
                     alt={hotel.name}
                     fill
                     className="object-cover w-full h-full brightness-90 hover:brightness-100 transition-all duration-300"
@@ -51,7 +51,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
                   {hotel.location}
                 </p>
                 <div className="pt-3 border-t border-accent flex items-center">
-                  <p className="font-semibold text-lg">¥{hotel.price}</p>
+                  <p className="font-semibold text-lg">¥{hotel.min_price}</p>
                   <span className="text-sm text-muted-foreground ml-1">
                     / 泊
                   </span>

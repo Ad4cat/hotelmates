@@ -1,12 +1,12 @@
+import { Header } from "@/components/Header";
 import ReviewForm from "@/components/ReviewForm";
 import React from "react";
 
-const page = () => {
+export default function page() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-5">
+      <Header />
       <ReviewForm />
     </div>
   );
-};
-
-export default page;
+}

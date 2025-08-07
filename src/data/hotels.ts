@@ -1,4 +1,12 @@
-import { Hotel } from "@/app/types/schema";
+interface Hotel {
+  id: string;
+  name: string;
+  location: string;
+  description: string;
+  price: number;
+  rating: number;
+  images: string[];
+}
 
 export const hotels: Hotel[] = [
   {
